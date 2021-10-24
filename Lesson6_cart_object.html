@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    <style>
+        #catalogue {
+            width: 1140px;
+            height: 400px;
+            /* display: flex; */
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<script>
+    function init() {
+        var goods = [
+            {
+                number: 1,
+                name: "skirt",
+                price: 300
+            },
+            {
+                number: 2,
+                name: "coat",
+                price: 900
+            },
+            {
+                number: 3,
+                name: "shoes",
+                price: 700
+            }
+        ]
+        console.log(goods);
+
+        for (let i = 0; i < goods.length; i++) {
+            const element = [goods[i].price, goods[i].name];
+            console.log(element);
+        }
+        // function addItem() {
+        //     var sum = 0;
+        //     for (let i = 0; i < goods.length; i++) {
+        //         sum += goods[i].price;
+        //         console.log(sum);
+        //     }
+        //     return sum;
+        //     var cart = document.getElementById("cart");
+        //     console.log(cart);
+
+        //     var summa = document.createTextContent("На сумму " + sum);
+        //     cart.appendChild(summa);
+        // } addItem();
+        var sum = 0;
+        var sumTotal = 0;
+
+        var btns = document.getElementsByTagName("button");
+        for (let i = 0; i < btns.length; i++) {
+
+            btns[i].onclick = addItem;
+
+        }
+
+        function addItem(obj) {
+
+            var selectedItem = obj.target;//выбранный товар из массива
+            var cart = document.getElementById("cart");//basket
+            var part = selectedItem.id.split("_")[1];
+            console.log(part);
+            var name = goods[part - 1].name;
+            var prezzo = goods[part - 1].price;
+            var src = part + ".jpg"
+            console.log(src)
+            document.createTextNode(name);
+            document.createTextNode(prezzo);
+            var photo = document.createElement("img");
+            photo.src = src;
+            cart.append(photo);
+
+            var tovar = "<div> Товар: " + name + "; Цена: " + prezzo + "</div>";
+            cart.insertAdjacentHTML("afterend", tovar);
+            sum = goods[part - 1].price;
+            console.log(sum);
+            sumTotal += sum;
+            document.createTextNode("" + sumTotal);
+            document.getElementsByClassName("sum")[0].textContent = "Sum: " + sumTotal + "\u20bd";
+
+
+
+
+            //var tr = selectedItems.insertRow(-1);
+            // var td = tr.insertCell(-1);
+            // td.appendChild(document.createTextNode(selectedItem[0].name));
+            //   var td = tr.insertCell(-1);
+            // td.style.textAlign = "center";
+            // td.style.width = "100px";
+            //   td.appendChild(document.createTextNode("    " + selectedItem.price + "\u20bd"));
+
+
+
+        }
+
+
+
+
+        // var btns = document.getElementsByTagName("button");
+        // for (var i = 0; i < btns.length; i++) {
+        //     btns[i].onclick = buy;
+
+        //     function buy(x) {
+        //         var uppDiv = document.getElementById('cart');
+        //         var buyBut = x.target;
+
+        //         for (var i = 0; i < btns.length; i++) {
+        //             var prezzo = goods[i].price + goods[(i + 1)].price;
+        //             console.log(prezzo);
+        //         }
+
+        //  prezzo = prezzo + goods[1].price;
+        //  }
+
+        // var prezzo = document.createElement('h1');
+        // card.src = buyBut.id.split("_")[1] + ".jpg";
+        //      uppDiv.innerHTML = "<h1>" + prezzo + "</h2>";
+    }
+    // }
+    //  }
+
+    window.onload = init;
+
+</script>
+
+<body>
+    <div id="cart">
+
+    </div>
+
+    <div class="sum">Сумма: 0 руб</div>
+
+
+    <div id="catalogue">
+        <img src="1.jpg" alt="s2" id="id_2">
+        <button id="buyButton_1">Купить</button>
+        <img src="2.jpg" alt="s2" id="id_2">
+        <button id="buyButton_2">Купить</button>
+        <img src="3.jpg" alt="s3" id="id_3">
+        <button id="buyButton_3">Купить</button>
+    </div>
+
+</body>
+
+</html>
