@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    <style>
+        #catalogue {
+            width: 1140px;
+            height: 400px;
+            /* display: flex; */
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<script>
+    function init() {
+        var btns = document.getElementsByTagName("button");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].onclick = buy;
+
+            function buy(x) {
+                var uppDiv = document.getElementById('cart');
+                var buyBut = x.target;
+                var card = document.createElement('img');
+                card.src = buyBut.id.split("_")[1] + ".jpg";
+                uppDiv.appendChild(card);
+            }
+        }
+    }
+    window.onload = init;
+
+</script>
+
+<body>
+    <div id="cart">
+
+
+    </div>
+    <div id="catalogue">
+        <img src="1.jpg" alt="s2" id="id_2">
+        <button id="buyButton_1">Купить</button>
+        <img src="2.jpg" alt="s2" id="id_2">
+        <button id="buyButton_2">Купить</button>
+        <img src="3.jpg" alt="s3" id="id_3">
+        <button id="buyButton_3">Купить</button>
+    </div>
+
+</body>
+
+</html>
