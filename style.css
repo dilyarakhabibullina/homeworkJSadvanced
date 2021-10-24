@@ -47,3 +47,10 @@ p {
     text-align: center;
     color: #ffffff;
 }
+.sum {
+    background-color: #413737;
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 25px;
+}
