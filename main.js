@@ -1,13 +1,19 @@
 const API_URL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/'
 
 Vue.component('good-card', {
-  template: `<div class="good-card">
+  template: `<div v-on:click="goToCart" class="good-card" >
     <h2>{{ title }}</h2>
     <p>$ {{ price }}</p>
   </div>`,
   props: {
     title: String,
     price: Number
+  },
+  methods: {
+goToCart() {
+  console.log('12345')
+  this.$emit('add')
+}
   }
 })
 
@@ -19,7 +25,7 @@ Vue.component('goods-list', {
       v-bind:key="good.id_product"
       v-bind:title="good.product_name"
       v-bind:price="good.price"
-      v-on:click="onAdd(good)"
+      v-on:add="onAdd(good)"
     ></good-card>
   </div>`,
   props: {
@@ -66,7 +72,7 @@ Vue.component('cart-item', {
 })
 
 Vue.component('cart', {
-  template: `<div class="modal" v-if="isVisibleCart">
+  template: `<div class="modal">
     <span class="close" v-on:click="onClose">x</span>
 
     <div class="goods-list">
